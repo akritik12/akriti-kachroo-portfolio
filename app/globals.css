@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FBF6EC;
+  color: #15140F;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: #0E0D09;
+  color: #F2E9D8;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 dark:bg-navy-light/40 backdrop-blur-md border border-navy/10 dark:border-white/10;
+  }
+
+  .glass-nav {
+    @apply bg-white/80 dark:bg-navy/80 backdrop-blur-lg border border-navy/10 dark:border-white/10;
+  }
+
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24 py-24 md:py-32;
+  }
+
+  .container-max {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-base dark:focus-visible:ring-offset-navy;
+  }
+
+  /* Outline / stroke text treatment for the hero name */
+  .text-stroke {
+    -webkit-text-stroke: 1.5px #15140F;
+    color: transparent;
+  }
+
+  /* Highlighter-marker effect for emphasized phrases */
+  .mark {
+    @apply bg-accent-tint text-navy dark:text-navy;
+    padding: 0 0.2em;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Subtle dot-grid texture for light sections */
+  .dot-grid {
+    background-image: radial-gradient(rgba(21, 20, 15, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .dark .dot-grid {
+    background-image: radial-gradient(rgba(251, 246, 236, 0.1) 1px, transparent 1px);
+  }
+
+  /* Always-dark band, independent of the site-wide theme toggle */
+  .band-dark {
+    @apply bg-navy text-base;
+  }
+}
+
+::selection {
+  background-color: #C1502E;
+  color: white;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

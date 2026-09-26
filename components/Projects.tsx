@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { projects, projectCategories, type Project, type ProjectCategory } from "@/lib/data";
 import ProjectCard from "./ProjectCard";
@@ -9,6 +9,18 @@ import ProjectModal from "./ProjectModal";
 export default function Projects() {
   const [filter, setFilter] = useState<ProjectCategory>("All");
   const [selected, setSelected] = useState<Project | null>(null);
+
+  // Other sections (e.g. "See related projects" in Skills) can set the filter via a custom event.
+  useEffect(() => {
+    const onFilter = (e: Event) => {
+      const value = (e as CustomEvent<string>).detail;
+      if ((projectCategories as readonly string[]).includes(value)) {
+        setFilter(value as ProjectCategory);
+      }
+    };
+    window.addEventListener("project-filter", onFilter);
+    return () => window.removeEventListener("project-filter", onFilter);
+  }, []);
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { All: projects.length };

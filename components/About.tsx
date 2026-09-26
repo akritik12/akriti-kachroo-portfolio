@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Linkedin, Github, Mail, MapPin, TrendingUp, FileDown } from "lucide-react";
-import { about, stats, languages, profile, coreTools } from "@/lib/data";
+import { about, stats, languages, profile, coreTools, education } from "@/lib/data";
 import SectionTitle from "./SectionTitle";
+import CountUp from "./CountUp";
 
 const connectItems = [
   { icon: FileDown, label: "Resume", value: "Download PDF", href: "/resume.pdf" },
@@ -42,9 +43,9 @@ export default function About() {
             </div>
 
             <h3 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight">
-  {profile.roleSubtitle}
-</h3>
-            <p className="mt-2 text-lg text-navy/50">{profile.roleSubtitle}</p>
+              {profile.roleSubtitle}
+            </h3>
+            <p className="mt-2 text-lg text-navy/50">{education[0].degree}</p>
 
             <p className="mt-6 text-base leading-relaxed text-navy/70 max-w-xl">{about}</p>
 
@@ -75,10 +76,12 @@ export default function About() {
               </a>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-6 pt-8 border-t border-navy/10">
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 pt-8 border-t border-navy/10">
               {stats.map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-heading text-3xl font-bold text-navy">{stat.value}</p>
+                  <p className="font-heading text-3xl font-bold text-navy">
+                    <CountUp value={stat.value} suffix={stat.suffix} />
+                  </p>
                   <p className="mt-1 font-mono text-xs uppercase tracking-wide text-navy/45">
                     {stat.label}
                   </p>

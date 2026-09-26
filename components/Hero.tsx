@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
-import { profile } from "@/lib/data";
+import { ArrowDown, ArrowUpRight, FileDown } from "lucide-react";
+import { profile, heroRoles } from "@/lib/data";
+import TypingText from "./TypingText";
 
 export default function Hero() {
   return (
@@ -40,8 +41,18 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-8 font-heading text-2xl md:text-3xl font-semibold text-navy min-h-[1.5em]"
+        >
+          <span className="text-navy/50">Working in </span>
+          <TypingText words={heroRoles} className="text-accent" />
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 max-w-lg text-lg text-navy/70"
+          className="mt-4 max-w-lg text-lg text-navy/70"
         >
                 {profile.summary}
         </motion.p>
@@ -54,6 +65,29 @@ export default function Hero() {
         >
           {profile.tagline}
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-10 flex flex-wrap gap-3"
+        >
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-navy text-base font-semibold shadow-soft hover:shadow-glow transition-shadow focus-ring"
+          >
+            View Projects
+            <ArrowUpRight size={16} />
+          </a>
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-navy/15 bg-white text-navy font-semibold hover:border-navy/30 transition-colors focus-ring"
+          >
+            <FileDown size={16} />
+            Download Resume
+          </a>
+        </motion.div>
       </div>
 
       <motion.div

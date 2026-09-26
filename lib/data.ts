@@ -1,4 +1,4 @@
- export const profile = {
+export const profile = {
   name: "Akriti Kachroo",
   firstName: "AKRITI",
   lastName: "KACHROO",
@@ -16,10 +16,10 @@
   linkedin: "https://www.linkedin.com/in/akriti-kachroo",
   github: "https://github.com/akritik12"
 };
-
+ 
 // Software & platforms
 export const coreTools = ["R", "Python", "SQL", "Power BI", "SPSS", "MS Office"];
-
+ 
 // Methods & concepts, distinct from the tools/software above
 export const coreConcepts = [
   "Econometrics",
@@ -35,14 +35,14 @@ export const coreConcepts = [
   "Health Technology Assessment",
   "Big Data Analytics"
 ];
-
+ 
 export const stats = [
   { label: "Year in Advanced Analytics", value: 1, suffix: "+" },
   { label: "Survey Responses Analyzed", value: 17000, suffix: "+" },
   { label: "Projects Built", value: 4, suffix: "" },
   { label: "Certifications Earned", value: 6, suffix: "" }
 ];
-
+ 
 // Rotating phrases for the hero typing animation
 export const heroRoles = [
   "Financial Analytics",
@@ -50,12 +50,12 @@ export const heroRoles = [
   "Data Science",
   "Econometrics & Forecasting"
 ];
-
+ 
 export const about =
   "M.Sc. Economics & Data Analytics candidate with real-world experience in market research, pricing, and public health policy. My goal is to bridge economics, analytics, and public health — turning data into decisions that matter.";
-
+ 
 export const languages = ["English", "Hindi", "Kashmiri"];
-
+ 
 type EducationItem = {
   degree: string;
   institution: string;
@@ -63,7 +63,7 @@ type EducationItem = {
   detail: string;
   coursework?: string[];
 };
-
+ 
 export const education: EducationItem[] = [
   {
     degree: "M.Sc. Economics (Data Analytics)",
@@ -84,7 +84,7 @@ export const education: EducationItem[] = [
     detail: "8.54/10"
   }
 ];
-
+ 
 export const experience = [
   {
     company: "Optimal Strategix Group",
@@ -133,13 +133,13 @@ export const experience = [
     ]
   }
 ];
-
+ 
 export const projectCategories = ["All", "Finance & Economics", "Market Research", "Machine Learning"] as const;
 export type ProjectCategory = (typeof projectCategories)[number];
-
+ 
 export type ProjectMetric = { label: string; value: string };
 export type ProjectLink = { label: string; href: string };
-
+ 
 export type Project = {
   title: string;
   tag: string;
@@ -154,7 +154,7 @@ export type Project = {
   image?: { src: string; alt: string; width: number; height: number };
   extraLinks?: ProjectLink[];
 };
-
+ 
 export const projects: Project[] = [
   {
     title: "Explainable Unemployment Rate Forecaster",
@@ -202,7 +202,7 @@ export const projects: Project[] = [
       "Every figure reconciled: all 30 company-years balance, and Excel ratios match an independent Python check"
     ],
     image: {
-      src: "/projects/fmcg-dashboard.png",
+      src: "/fmcg-dashboard.png",
       alt: "Interactive Excel dashboard comparing FMCG companies",
       width: 1124,
       height: 1138
@@ -236,7 +236,7 @@ export const projects: Project[] = [
       "Word clouds surface the main complaint themes: apps, charging, speed and returns"
     ],
     image: {
-      src: "/projects/sentiment-confusion-matrix.png",
+      src: "/sentiment-confusion-matrix.png",
       alt: "Confusion matrix of the sentiment model",
       width: 569,
       height: 455
@@ -264,14 +264,14 @@ export const projects: Project[] = [
       "Concluded the dataset is likely synthetic — and said so, rather than presenting random patterns as insight"
     ],
     image: {
-      src: "/projects/food-pca.png",
+      src: "/food-pca.png",
       alt: "PCA explained variance plot from Orange Data Mining",
       width: 1108,
       height: 763
     }
   }
 ];
-
+ 
 export const skillSections = [
   {
     number: "01",
@@ -316,7 +316,7 @@ export const skillSections = [
     stack: ["Python", "scikit-learn", "XGBoost", "SHAP"]
   }
 ];
-
+ 
 export const certifications = [
   {
     title: "Social Media Data Analytics",
@@ -343,7 +343,7 @@ export const certifications = [
     issuer: "University of Michigan (Coursera)"
   }
 ];
-
+ 
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Education", href: "#education" },

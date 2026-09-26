@@ -37,9 +37,18 @@ export const coreConcepts = [
 ];
 
 export const stats = [
-  { label: "Year in Advanced Analytics", value: "1+" },
-  { label: "Survey Responses Analyzed", value: "17,000+" },
-  { label: "Certifications Earned", value: "6" }
+  { label: "Year in Advanced Analytics", value: 1, suffix: "+" },
+  { label: "Survey Responses Analyzed", value: 17000, suffix: "+" },
+  { label: "Projects Built", value: 4, suffix: "" },
+  { label: "Certifications Earned", value: 6, suffix: "" }
+];
+
+// Rotating phrases for the hero typing animation
+export const heroRoles = [
+  "Financial Analytics",
+  "Market Research",
+  "Data Science",
+  "Econometrics & Forecasting"
 ];
 
 export const about =
@@ -125,36 +134,141 @@ export const experience = [
   }
 ];
 
-export const projects = [
+export const projectCategories = ["All", "Finance & Economics", "Market Research", "Machine Learning"] as const;
+export type ProjectCategory = (typeof projectCategories)[number];
+
+export type ProjectMetric = { label: string; value: string };
+export type ProjectLink = { label: string; href: string };
+
+export type Project = {
+  title: string;
+  tag: string;
+  year: string;
+  categories: Exclude<ProjectCategory, "All">[];
+  description: string;
+  tech: string[];
+  github: string;
+  demo: string;
+  metrics: ProjectMetric[];
+  highlights: string[];
+  image?: { src: string; alt: string; width: number; height: number };
+  extraLinks?: ProjectLink[];
+};
+
+export const projects: Project[] = [
   {
     title: "Explainable Unemployment Rate Forecaster",
     tag: "Live Project",
     year: "2026",
+    categories: ["Machine Learning", "Finance & Economics"],
     description:
       "A gradient-boosted (XGBoost) model forecasting next month's US unemployment rate from live FRED macro data — with every prediction explained via SHAP waterfall plots, not treated as a black box. Deployed as a live interactive dashboard.",
     tech: ["Python", "XGBoost", "SHAP", "FRED API", "Streamlit"],
     github: "https://github.com/akritik12/explainable-unemployment-forecaster",
-    demo: "https://unemployment-forecaster-akriti.streamlit.app/"
+    demo: "https://unemployment-forecaster-akriti.streamlit.app/",
+    metrics: [
+      { label: "Data source", value: "Live FRED API" },
+      { label: "Model", value: "XGBoost" },
+      { label: "Explainability", value: "SHAP" }
+    ],
+    highlights: [
+      "Pulls live US macroeconomic indicators from the Federal Reserve's FRED API",
+      "Forecasts next month's unemployment rate with a gradient-boosted model",
+      "Explains every forecast with a SHAP waterfall plot, showing which indicators pushed it up or down",
+      "Deployed as a public Streamlit dashboard anyone can try"
+    ]
+  },
+  {
+    title: "Indian FMCG Financial Statement Analysis",
+    tag: "Real Project",
+    year: "2026",
+    categories: ["Finance & Economics"],
+    description:
+      "A 5-year ratio and DuPont analysis of HUL, ITC, Dabur, Britannia and Marico (FY21–FY26), built as a formula-driven Excel model with an interactive dashboard — pick a company and year and every KPI, chart and peer ranking updates.",
+    tech: ["Excel", "Financial Modelling", "Ratio Analysis", "DuPont Analysis", "INDEX/MATCH"],
+    github: "https://github.com/akritik12/indian-fmcg-financial-analysis",
+    demo: "",
+    metrics: [
+      { label: "Companies", value: "5" },
+      { label: "Years analysed", value: "FY21–FY26" },
+      { label: "Highest ROE (Britannia)", value: "53.6%" },
+      { label: "Live formulas", value: "1,700+" }
+    ],
+    highlights: [
+      "Britannia leads on returns (ROE 53.6%, ROCE 56.3%), driven by 2.1x asset turnover — not margins",
+      "ITC has the best operating margin (~35%) but a 164-day cash conversion cycle from leaf-tobacco inventory",
+      "HUL runs a −89-day cash conversion cycle: suppliers effectively fund its operations",
+      "Flagged one-off gains (ITC Hotels demerger in FY25) that would otherwise overstate profit growth",
+      "Every figure reconciled: all 30 company-years balance, and Excel ratios match an independent Python check"
+    ],
+    image: {
+      src: "/projects/fmcg-dashboard.png",
+      alt: "Interactive Excel dashboard comparing FMCG companies",
+      width: 1124,
+      height: 1138
+    },
+    extraLinks: [
+      {
+        label: "Download dashboard (.xlsx)",
+        href: "https://github.com/akritik12/indian-fmcg-financial-analysis/raw/main/FMCG_Financial_Analysis_dashboard.xlsx"
+      }
+    ]
   },
   {
     title: "Customer Sentiment Analysis",
     tag: "Real Project",
     year: "2025",
+    categories: ["Machine Learning", "Market Research"],
     description:
-      "An NLP pipeline classifying 34,000+ real Amazon customer reviews as Positive, Neutral, or Negative using TF-IDF feature extraction and Logistic Regression, with confusion matrix and word-cloud diagnostics.",
+      "An NLP pipeline classifying Amazon customer reviews as Positive, Neutral, or Negative using TF-IDF features and Logistic Regression — with an honest look at how class imbalance makes high accuracy misleading.",
     tech: ["Python", "scikit-learn", "TF-IDF", "NLP", "Pandas"],
     github: "https://github.com/akritik12/Customer-Sentiment-Analysis",
-    demo: ""
+    demo: "",
+    metrics: [
+      { label: "Reviews analysed", value: "27,867" },
+      { label: "Accuracy", value: "93.3%" },
+      { label: "Macro F1", value: "0.42" }
+    ],
+    highlights: [
+      "Cleaned 34,660 raw reviews and labelled sentiment from star ratings (1–2 Negative, 3 Neutral, 4–5 Positive)",
+      "93% of reviews are positive, so accuracy alone barely beats always guessing \"Positive\"",
+      "Used per-class recall and macro F1 to expose weak Negative and Neutral detection",
+      "Word clouds surface the main complaint themes: apps, charging, speed and returns"
+    ],
+    image: {
+      src: "/projects/sentiment-confusion-matrix.png",
+      alt: "Confusion matrix of the sentiment model",
+      width: 569,
+      height: 455
+    }
   },
   {
-    title: "Food Impact on Indians: Market Research",
+    title: "Food Impact on Indians: Survey Analysis",
     tag: "Real Project",
     year: "2025",
+    categories: ["Market Research"],
     description:
-      "Consumer behaviour and market segmentation analysis on a 17,686-response Kaggle survey dataset, using K-Means clustering in Orange Data Mining to identify actionable customer segments by demographics and food preference.",
-    tech: ["Orange Data Mining", "K-Means Clustering", "Market Segmentation", "Survey Research"],
+      "Exploratory analysis of a 17,686-respondent diet and health survey in Orange Data Mining — using PCA, K-Means and chi-square tests to check whether real consumer segments exist before recommending anything.",
+    tech: ["Orange Data Mining", "PCA", "K-Means", "Chi-square", "Survey Research"],
     github: "https://github.com/akritik12/Food--Impact-on--Indians-Market--Research",
-    demo: ""
+    demo: "",
+    metrics: [
+      { label: "Survey responses", value: "17,686" },
+      { label: "Variance in PC1 + PC2", value: "9.2%" },
+      { label: "Region × cuisine χ² p-value", value: "0.829" }
+    ],
+    highlights: [
+      "Profiled respondents: 54% vegetarian, 49% sedentary, 47% in the obese BMI range",
+      "PCA and silhouette scores (< 0.05) showed no natural customer segments",
+      "Chi-square tests found no link between region and cuisine, or diet and exercise",
+      "Concluded the dataset is likely synthetic — and said so, rather than presenting random patterns as insight"
+    ],
+    image: {
+      src: "/projects/food-pca.png",
+      alt: "PCA explained variance plot from Orange Data Mining",
+      width: 1108,
+      height: 763
+    }
   }
 ];
 
